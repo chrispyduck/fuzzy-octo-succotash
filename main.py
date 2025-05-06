@@ -23,6 +23,9 @@ stack.up(
     on_output=print,
     log_flow=True,
     log_to_std_err=True,
+    log_verbosity=10,
+    color="always",
+    debug=True,
 )
 
 # fails
@@ -30,4 +33,7 @@ stack.up(
     on_output=print,
     log_flow=True,
     log_to_std_err=True,
+    log_verbosity=10,
+    color="always",
+    debug=True,
 )
