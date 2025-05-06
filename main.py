@@ -4,12 +4,7 @@ import pulumi
 
 from stack import program
 
-work_dir = os.path.join(os.getcwd(), ".pulumi")
-os.makedirs(work_dir, exist_ok=True)
-os.environ["PULUMI_HOME"] = work_dir  # directs the CLI to store state locally
-os.environ["PULUMI_CONFIG_PASSPHRASE"] = "test"
-
-stack = pulumi.automation.create_stack(
+stack = pulumi.automation.create_or_select_stack(
     stack_name="organization/test/test",
     project_name="test",
     program=program,
@@ -23,6 +18,14 @@ stack = pulumi.automation.create_stack(
     ),
 )
 
+# succeeds
+stack.up(
+    on_output=print,
+    log_flow=True,
+    log_to_std_err=True,
+)
+
+# fails
 stack.up(
     on_output=print,
     log_flow=True,
