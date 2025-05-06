@@ -1,4 +1,4 @@
-.PHONY: venv deps lock-deps setup
+.PHONY: venv deps lock-deps setup run
 
 .venv:
 	uv python install 3.11
@@ -18,3 +18,7 @@ requirements.txt:
 lock-deps: requirements.txt
 
 setup: venv deps
+	@mkdir -p .pulumi
+
+run: setup
+	python ./main.py
